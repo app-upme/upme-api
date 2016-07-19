@@ -5,4 +5,6 @@ class Coach < ActiveRecord::Base
 
   validates :name, :email, presence: true
 
+  mount_uploader :avatar, AvatarUploader
+
 end

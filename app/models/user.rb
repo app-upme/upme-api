@@ -5,4 +5,6 @@ class User < ApplicationRecord
 
   validates :name, :age, :gender, presence: true
 
+  mount_uploader :avatar, AvatarUploader
+
 end
