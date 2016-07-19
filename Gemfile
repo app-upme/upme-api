@@ -35,7 +35,10 @@ gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'mini_magick'
 
-gem 'web-console', '~> 2.0', group: :development
+group :development do
+  gem 'web-console', '~> 2.0'
+  gem 'listen', '~> 3.0'
+end
 
 group :development, :test do
   gem 'byebug'
