@@ -21,7 +21,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # API - Util
-gem 'active_model_serializers'
+gem 'jbuilder', git: 'git://github.com/rails/jbuilder.git', branch: "master"
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'responders'
 gem 'enumerize'
 gem 'kaminari'
