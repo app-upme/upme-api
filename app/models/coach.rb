@@ -1,4 +1,4 @@
-class coach < ActiveRecord::Base
+class Coach < ActiveRecord::Base
   # Include default devise modules.
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :validatable, :omniauthable

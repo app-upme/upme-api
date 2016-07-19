@@ -1,4 +1,4 @@
-class DeviseTokenAuthCreatecoaches < ActiveRecord::Migration
+class DeviseTokenAuthCreateCoaches < ActiveRecord::Migration
   def change
     create_table(:coaches) do |t|
       ## Required
