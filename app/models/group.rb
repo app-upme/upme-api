@@ -1,5 +1,6 @@
 class Group < ApplicationRecord
-  belongs_to :user
+  belongs_to :coach
+  has_many :users
 
   validates :name, presence: true
 

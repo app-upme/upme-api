@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       resources :coaches, only: []
+      resources :groups
 
     end
   end
