@@ -10,8 +10,7 @@ gem 'uruz'
 
 # Authentication
 gem 'devise'
-gem 'omniauth'
-gem 'devise_token_auth'
+gem 'jwt'
 
 # UI tools
 gem 'bootstrap-sass', '~> 3.3.6'

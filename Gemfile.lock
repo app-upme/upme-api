@@ -86,9 +86,6 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
-    devise_token_auth (0.1.38)
-      devise (> 3.5.2, <= 4.2)
-      rails (< 6)
     diff-lcs (1.2.5)
     enumerize (1.1.1)
       activesupport (>= 3.2)
@@ -106,7 +103,6 @@ GEM
       thor (~> 0.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    hashie (3.4.4)
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -119,6 +115,7 @@ GEM
     json (1.8.3)
     jsonapi (0.1.1.beta2)
       json (~> 1.8)
+    jwt (1.5.4)
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -149,9 +146,6 @@ GEM
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
-    omniauth (1.3.1)
-      hashie (>= 1.2, < 4)
-      rack (>= 1.0, < 3)
     open4 (1.3.4)
     orm_adapter (0.5.0)
     pkg-config (1.1.7)
@@ -257,7 +251,6 @@ DEPENDENCIES
   carrierwave
   carrierwave-aws
   devise
-  devise_token_auth
   enumerize
   factory_girl_rails
   faker
@@ -265,13 +258,13 @@ DEPENDENCIES
   httparty
   jbuilder!
   jquery-rails
+  jwt
   kaminari
   listen (~> 3.0)
   mina
   mini_magick
   mysql2
   newrelic_rpm
-  omniauth
   rails (~> 5.0.0)
   responders
   rollbar
