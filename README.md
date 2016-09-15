@@ -22,3 +22,12 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Auth
+
+#### TODO
+
+* Implementar sub sessions
+* criptografia dos tokens no banco
+* criar arquivo de configuração no initializer
+* configurar nome dos tokens no initializer

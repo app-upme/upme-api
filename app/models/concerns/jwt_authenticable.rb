@@ -15,20 +15,43 @@ module JWTAuthenticable
     serialize :tokens, JSON
   end
 
-  def generate_new_token(with_session_id: nil)
-    return if self.tokens.length >= MAX_SESSIONS && with_session_id.blank?
+  def generate_new_token(with_sid: nil)
+    if self.tokens.length >= MAX_SESSIONS
+      self.tokens.delete self.tokens.keys.first
+    end
 
-    session_id  = with_session_id || build_session_id
+    session_id  = with_sid || build_session_id
     expiration  = (Time.now.to_i + EXP.to_i)
     refresh_exp = (Time.now.to_i + RSH_EXP.to_i)
 
-    self.tokens[ session_id ] = {
+    token = {
       token:         generate_jwt(with_expiration: expiration),
       refresh_token: generate_jwt(with_expiration: refresh_exp),
-      expiry:        expiration
+      expiry:        expiration,
+      sid:           session_id
     }
 
-    self.save
+    self.tokens[ session_id ] = token
+    self.save!
+    token
+  end
+
+  def valid_token?(token, session_id)
+    # token not found
+    return false unless self.tokens[session_id]
+    # token inconsistent token
+    return false unless self.tokens[session_id][:token] != token
+    # valid token
+    return true if JWT.decode self.tokens[session_id], Rails.application.secrets.secret_key_base, true, { :algorithm => ALG }
+
+    rescue #invalid token
+      return false
+  end
+
+  def default_sid
+    return if self.tokens.blank?
+
+    self.tokens.keys.last
   end
 
   private
