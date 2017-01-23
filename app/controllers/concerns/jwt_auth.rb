@@ -51,14 +51,19 @@ module JWTAuth
       end
     end
 
-    class_eval do
-      Devise.mappings.each do |mapping|
-        resource = mapping.first
-
-        define_method("authenticate_#{resource}_from_token") do
-          authenticate_from_token(resource)
-        end
-      end
+    def authenticate_coach_from_token(resource)
+      authenticate_from_token(resource)
     end
+
+    # class_eval do
+    #   Devise.mappings.each do |mapping|
+    #     resource = mapping.first
+    #     Rails.logger.info "---> #{resource.inspect}"
+
+    #     define_method("authenticate_#{resource}_from_token") do
+    #       authenticate_from_token(resource)
+    #     end
+    #   end
+    # end
 
 end
