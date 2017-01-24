@@ -36,7 +36,9 @@ class DeviseCreateCoaches < ActiveRecord::Migration
       t.timestamps null: false
 
       ## Tokens
-      t.text :tokens
+      #t.text :tokens
+
+      t.string :authentication_token
 
       ## User Info
       t.string :name

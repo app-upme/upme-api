@@ -3,13 +3,13 @@ class Api::V1::SessionsController < Api::V1::ApiController
   skip_before_action :authenticate_coach_from_token, only: :create
 
   def create
-    @resource = Coach.find_by(email: session_params[:email])
-    return render_invalid_login unless @resource
+    @coach = Coach.find_by(email: session_params[:email])
+    return render_invalid_login unless @coach
 
-    if @resource.valid_password? session_params[:password]
-      resource_sign_in(@resource)
+    if @coach.valid_password? session_params[:password]
+      sign_in @coach, store: false
 
-      render json: @resource, status: :ok
+      respond_with @coach, location: ''
     else
       return render_invalid_login
     end
@@ -17,9 +17,6 @@ class Api::V1::SessionsController < Api::V1::ApiController
 
   def destroy
     render json: { foi: 'AEHOOOOOOOOOOOOOOOOOOOO' }
-  end
-
-  def refresh_token
   end
 
   private

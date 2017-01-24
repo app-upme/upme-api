@@ -1,5 +1,5 @@
 class Coach < ActiveRecord::Base
-  include JWTAuthenticable
+  include TokenGenerate
 
   devise :database_authenticatable, :registerable, :recoverable, :validatable
 
