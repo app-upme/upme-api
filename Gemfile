@@ -7,6 +7,7 @@ gem 'unicorn'
 gem 'figaro'
 gem 'httparty'
 gem 'uruz'
+gem 'rack-cors'
 
 # Authentication
 gem 'devise'
