@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :groups
+      resources :users, only: :show
+
+      resources :groups do
+        resources :users, only: :create
+      end
 
       resources :coaches, only: :create do
         collection do

@@ -8,6 +8,12 @@ class Api::V1::GroupsController < Api::V1::ApiController
     respond_with @groups, location: ''
   end
 
+  def show
+    @group = Group.find_by(id: params[:id])
+
+    respond_with @group, location: ''
+  end
+
   def create
     @group = current_coach.groups.create group_params
 
