@@ -8,6 +8,7 @@ gem 'figaro'
 gem 'httparty'
 gem 'uruz'
 gem 'rack-cors'
+gem 'activeadmin'
 
 # Authentication
 gem 'devise'
