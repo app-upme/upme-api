@@ -22,7 +22,7 @@ class Api::V1::SessionsController < Api::V1::ApiController
   private
 
     def session_params
-      params.permit(:password, :email)
+      params.require(:coach).permit(:password, :email)
     end
 
     def render_invalid_login
