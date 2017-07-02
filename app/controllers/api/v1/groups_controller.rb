@@ -15,7 +15,8 @@ class Api::V1::GroupsController < Api::V1::ApiController
   end
 
   def create
-    @group = current_coach.groups.create group_params
+    # @group = current_coach.groups.create group_params
+    @group = Coach.first.groups.create group_params
 
     respond_with @group, location: ''
   end
@@ -23,7 +24,7 @@ class Api::V1::GroupsController < Api::V1::ApiController
   private
 
     def group_params
-      params.permit(:name, :description)
+      params.require(:group).permit(:name, :description)
     end
 
 end
