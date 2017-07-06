@@ -2,8 +2,7 @@ class Vo2maxTraining < ApplicationRecord
 
   belongs_to :user
 
-  validates :user, :training_date, :distance,
-            :average_speed, :result, :ranking, presence: true
+  validates :user, :training_date, :distance, presence: true
 
 end
 
