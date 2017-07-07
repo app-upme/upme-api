@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+      resources :results, only: :index
+
       resources :users, only: [:show, :destroy] do
         scope module: :users do
           resources :vo2max_trainings, only: [:create, :destroy]
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
       end
 
       resources :groups do
+        get :average_results, on: :member
+
         scope module: :groups do
           resources :users, only: :create
         end
