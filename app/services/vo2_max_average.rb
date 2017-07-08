@@ -1,6 +1,8 @@
 class Vo2MaxAverage
   attr_reader :trainings
 
+  LABEL = '%d - %b'
+
   class Range
     HALF  = 14.day
     MONTH = 30.day
@@ -14,16 +16,16 @@ class Vo2MaxAverage
   end
 
   def call
-    labels = ((Date.today - @range)..Date.today).map { |date| date.strftime('%d') }
-    trainings_group = @trainings.group_by { |x| x.training_date.strftime('%d') }
+    rangeLabels = ((Date.today - @range)..Date.today).map { |date| date.strftime(LABEL) }
+    trainings_group = @trainings.group_by { |x| x.training_date.strftime(LABEL) }
 
     trainings_results = trainings_group.each_with_object({}) do |(day, trainings), result|
       average = trainings.sum(&:result) / trainings.size
-      result[ day ] = average
+      result[ day ] = average.round(4)
     end
 
-    data = labels.each_with_object({}) do |label, data|
-      data[label] = trainings_results[label] if trainings_group[label]
+    data = rangeLabels.each_with_object({}) do |label, data|
+      data[label] = trainings_results[label]
     end
 
     { title: @title, labels: data.keys, data: data.values }

@@ -9,7 +9,7 @@ class Api::V1::Groups::UsersController < Api::V1::ApiController
   private
 
     def user_params
-      params.permit(:name, :email, :avatar, :age, :gender)
+      params.permit(:name, :email, :avatar, :age, :gender, :started_training_at)
     end
 
     def fetch_group

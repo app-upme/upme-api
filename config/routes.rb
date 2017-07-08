@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       end
 
       resources :groups do
-        get :average_results, on: :member
+        get :results, action: :average_results, on: :member
 
         scope module: :groups do
           resources :users, only: :create

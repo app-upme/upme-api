@@ -20,7 +20,7 @@ class Api::V1::GroupsController < Api::V1::ApiController
   end
 
   def average_results
-    @result = Vo2MaxAverage.new(trainings: @group.vo2max_trainings, title: @group.name, range: 15.day).call
+    @result = Vo2MaxAverage.new(trainings: @group.trainings, title: @group.name, range: 15.day).call
 
     respond_with @result, location: ''
   end

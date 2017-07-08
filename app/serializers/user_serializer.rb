@@ -8,7 +8,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def started_training_at
-    object.started_training_at.strftime('%d/%m/%Y')
+    object.started_training_at.strftime('%d/%m/%Y') if object.started_training_at.present?
   end
 
   def links

@@ -12,4 +12,8 @@ class Vo2maxTrainingSerializer < ActiveModel::Serializer
   def average_speed
     "#{object.average_speed.round} km/h"
   end
+
+  def result
+    object.result.round(4)
+  end
 end
