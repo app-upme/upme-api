@@ -1,4 +1,8 @@
 pt-BR:
+  api:
+    errors:
+      unprocessable_entity: "Ocorreu um erro. Entre em contato com o suporte"
+      unauthorized: "Email ou senha inválidos"
   activerecord:
     errors:
       messages:
