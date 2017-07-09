@@ -16,4 +16,8 @@ class Vo2maxTrainingSerializer < ActiveModel::Serializer
   def result
     object.result.round(4)
   end
+
+  def ranking
+    object.ranking.text
+  end
 end

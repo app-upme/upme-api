@@ -1,10 +1,13 @@
 class Vo2maxTraining < ApplicationRecord
+  extend Enumerize
 
   TRAINING_DURATION = 12.minutes
 
   belongs_to :user
 
   validates :user, :training_date, :distance, presence: true
+
+  enumerize :ranking, in: %w[very_weak weak middle good excellent higher]
 
   before_create :calculate_results
 

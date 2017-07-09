@@ -6,7 +6,11 @@ class User < ApplicationRecord
 
   validates :name, :age, :gender, presence: true
 
-  enumerize :gender, in: [:male, :famale]
+  enumerize :gender, in: %w[male famale]
 
   mount_uploader :avatar, AvatarUploader
+
+  def average_result
+    vo2max_trainings.sum(:result) / vo2max_trainings.count if vo2max_trainings.present?
+  end
 end

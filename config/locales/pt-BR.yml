@@ -1,4 +1,16 @@
 pt-BR:
+  enumerize:
+    ranking:
+      very_weak: "Muito fraco"
+      weak: "Fraco"
+      middle: "Regular"
+      good: "Bom"
+      excellent: "Excelente"
+      higher: "Altíssimo"
+    user:
+      gender:
+        male: "Masculino"
+        female: "Feminino"
   api:
     errors:
       unprocessable_entity: "Ocorreu um erro. Entre em contato com o suporte"

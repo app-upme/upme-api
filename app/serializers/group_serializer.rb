@@ -1,5 +1,5 @@
 class GroupSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :users_count, :links
+  attributes :id, :name, :description, :users_count, :last_training_date, :links
 
   has_many :users
 
@@ -9,5 +9,9 @@ class GroupSerializer < ActiveModel::Serializer
 
   def users_count
     object.users.count
+  end
+
+  def last_training_date
+    object.trainings.last.created_at.strftime('%d/%m/%Y') if object.trainings
   end
 end
