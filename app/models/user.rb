@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :name, :age, :gender, presence: true
 
-  enumerize :gender, in: { male: 0, famale: 1 }
+  enumerize :gender, in: [:male, :famale]
 
   mount_uploader :avatar, AvatarUploader
 end

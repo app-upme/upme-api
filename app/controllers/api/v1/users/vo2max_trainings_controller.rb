@@ -22,7 +22,7 @@ class Api::V1::Users::Vo2maxTrainingsController < Api::V1::ApiController
   end
 
   def fetch_user
-    @user = User.find_by(id: params[:user_id])
+    @user = current_coach.treined_users.find_by(id: params[:user_id])
   end
 
 end

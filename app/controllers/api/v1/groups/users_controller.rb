@@ -1,7 +1,7 @@
 class Api::V1::Groups::UsersController < Api::V1::ApiController
 
   def create
-    @user = Group.find_by(id: params[:group_id]).users.create user_params
+    @user = current_coach.groups.find_by(id: params[:group_id]).users.create user_params
 
     respond_with @user, location: ''
   end

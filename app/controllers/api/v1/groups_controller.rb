@@ -3,7 +3,7 @@ class Api::V1::GroupsController < Api::V1::ApiController
   before_action :fetch_group
 
   def index
-    @groups = Group.all
+    @groups = current_coach.groups
 
     respond_with @groups, location: ''
   end
@@ -13,8 +13,7 @@ class Api::V1::GroupsController < Api::V1::ApiController
   end
 
   def create
-    # @group = current_coach.groups.create group_params
-    @group = Coach.first.groups.create group_params
+    @group = current_coach.groups.create group_params
 
     respond_with @group, location: ''
   end
@@ -32,7 +31,7 @@ class Api::V1::GroupsController < Api::V1::ApiController
   end
 
   def fetch_group
-    @group = Group.find_by(id: params[:id])
+    @group = current_coach.groups.find_by(id: params[:id])
   end
 
 end

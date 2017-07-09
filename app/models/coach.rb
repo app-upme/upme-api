@@ -8,4 +8,8 @@ class Coach < ActiveRecord::Base
   validates :name, :email, presence: true
 
   mount_uploader :avatar, AvatarUploader
+
+  def treined_users
+    User.where(group_id: groups)
+  end
 end

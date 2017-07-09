@@ -21,7 +21,7 @@ class Api::V1::UsersController < Api::V1::ApiController
   private
 
   def fetch_user
-    @user = User.find_by(id: params[:id])
+    @user = current_coach.treined_users.find_by(id: params[:id])
   end
 
 end
