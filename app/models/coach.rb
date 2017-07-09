@@ -1,5 +1,5 @@
 class Coach < ActiveRecord::Base
-  include TokenGenerate
+  include TokenAuthentication
 
   devise :database_authenticatable, :registerable, :recoverable, :validatable
 
@@ -8,5 +8,4 @@ class Coach < ActiveRecord::Base
   validates :name, :email, presence: true
 
   mount_uploader :avatar, AvatarUploader
-
 end

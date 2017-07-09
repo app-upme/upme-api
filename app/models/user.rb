@@ -9,5 +9,4 @@ class User < ApplicationRecord
   enumerize :gender, in: { male: 0, famale: 1 }
 
   mount_uploader :avatar, AvatarUploader
-
 end

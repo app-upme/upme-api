@@ -1,32 +1,23 @@
 class Api::V1::SessionsController < Api::V1::ApiController
 
-  skip_before_action :authenticate_coach_from_token, only: :create
+  skip_before_action :authenticate_coach_from_token!, only: :create
+
+  before_action :find_coach
 
   def create
-    @coach = Coach.find_by(email: session_params[:email])
-    return render_invalid_login unless @coach
+    return render_unauthorized_error if @coach.nil? || !@coach.valid_password?( params[:coach][:password] )
 
-    if @coach.valid_password? session_params[:password]
-      sign_in @coach, store: false
+    headers = @coach.refresh_token
+    sign_in @coach, store: false
+    device_builder if params[:device].present?
 
-      respond_with @coach, location: ''
-    else
-      return render_invalid_login
-    end
-  end
-
-  def destroy
-    render json: { foi: 'AEHOOOOOOOOOOOOOOOOOOOO' }
+    respond_with @coach, location: '', serializer: SessionSerializer, scope: { token: headers[:token] }
   end
 
   private
 
-    def session_params
-      params.require(:coach).permit(:password, :email)
-    end
-
-    def render_invalid_login
-      render json: { errors: 'Invalid email or password' }, status: :unauthorized
-    end
+  def find_coach
+    @coach = Coach.find_for_database_authentication(email: params[:coach][:email])
+  end
 
 end
