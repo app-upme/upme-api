@@ -12,6 +12,12 @@ class Api::V1::UsersController < Api::V1::ApiController
     respond_with @user, location: ''
   end
 
+  def average_results
+    @result = Vo2MaxAverage.new(trainings: @user.vo2max_trainings, title: @user.name, range: 15.day).call
+
+    respond_with @result, location: ''
+  end
+
   private
 
   def fetch_user

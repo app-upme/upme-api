@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       resources :results, only: :index
 
       resources :users, only: [:show, :destroy] do
+        get :results, action: :average_results, on: :member
+
         scope module: :users do
           resources :vo2max_trainings, only: [:create, :destroy]
         end
