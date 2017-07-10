@@ -12,6 +12,10 @@ class GroupSerializer < ActiveModel::Serializer
   end
 
   def last_training_date
-    object.trainings.last.created_at.strftime('%d/%m/%Y') if object.trainings
+    if object.trainings.present?
+      object.trainings.last.created_at.strftime('%d/%m/%Y')
+    else
+      '--/--/--'
+    end
   end
 end

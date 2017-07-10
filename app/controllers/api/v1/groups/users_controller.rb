@@ -1,9 +1,17 @@
 class Api::V1::Groups::UsersController < Api::V1::ApiController
 
+  before_action :fetch_group
+
   def create
-    @user = current_coach.groups.find_by(id: params[:group_id]).users.create user_params
+    @user = @group.users.create user_params
 
     respond_with @user, location: ''
+  end
+
+  def index
+    @users = @group.users
+
+    respond_with @users, location: ''
   end
 
   private
@@ -13,7 +21,7 @@ class Api::V1::Groups::UsersController < Api::V1::ApiController
     end
 
     def fetch_group
-      current_coach.groups.find_by id: params[:group_id]
+      @group = current_coach.groups.find_by(id: params[:group_id])
     end
 
 end

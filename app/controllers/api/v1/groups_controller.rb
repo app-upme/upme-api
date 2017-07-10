@@ -1,6 +1,6 @@
 class Api::V1::GroupsController < Api::V1::ApiController
 
-  before_action :fetch_group
+  before_action :fetch_group, except: [:create, :index]
 
   def index
     @groups = current_coach.groups
@@ -14,6 +14,12 @@ class Api::V1::GroupsController < Api::V1::ApiController
 
   def create
     @group = current_coach.groups.create group_params
+
+    respond_with @group, location: ''
+  end
+
+  def destroy
+    @group.destroy
 
     respond_with @group, location: ''
   end
