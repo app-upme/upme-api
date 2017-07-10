@@ -12,4 +12,9 @@ class Coach < ActiveRecord::Base
   def treined_users
     User.where(group_id: groups)
   end
+
+  def user_trainings
+    user_ids = User.select(:id).where(group_id: groups)
+    Vo2maxTraining.where(user_id: user_ids)
+  end
 end
