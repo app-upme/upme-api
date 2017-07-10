@@ -2,7 +2,7 @@ class User < ApplicationRecord
   extend Enumerize
 
   belongs_to :group
-  has_many :vo2max_trainings, ->{ order(id: :desc) }
+  has_many :vo2max_trainings, -> { order(id: :desc) }, dependent: :destroy
 
   validates :name, :age, :gender, presence: true
 
